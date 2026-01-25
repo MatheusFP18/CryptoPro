@@ -1,12 +1,13 @@
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import { Header } from "../../components/Header";
-import { Card } from "../../components/Card";
+import { SectionMain } from "../../components/SectionMain";
 
 export const Inicial = ({ isDarkMode, toggleTheme }) => {
   return (
     <Container>
       <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      <Card isDarkMode={isDarkMode} />
+      <Divider />
+      <SectionMain isDarkMode={isDarkMode} />
     </Container>
   );
 };

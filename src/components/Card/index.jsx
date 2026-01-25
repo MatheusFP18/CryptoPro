@@ -1,20 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
-import { getCoins } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
- 
-export const Card = ({ isDarkMode }) => {
-  const [criptos, setCriptos] = useState([]);
-  const [favorites, setFavorites] = useState({});
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getCoins();
-      setCriptos(data);
-    };
-    getData();
-  }, []);
+export const Card = ({ isDarkMode, criptos = [] }) => {
+  const [favorites, setFavorites] = useState({});
 
   const handleFavorite = (id) => {
     setFavorites((prevFavorites) => ({
@@ -36,7 +26,9 @@ export const Card = ({ isDarkMode }) => {
             display: "flex",
             flexDirection: "column",
             gap: 2,
-            bgcolor: isDarkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+            bgcolor: isDarkMode
+              ? "rgba(255, 255, 255, 0.1)"
+              : "rgba(0, 0, 0, 0.1)",
             borderRadius: 2,
             width: "300px",
             p: 2,
@@ -64,8 +56,20 @@ export const Card = ({ isDarkMode }) => {
                 <Typography>{cripto.symbol}</Typography>
               </Box>
             </Box>
-            <Button onClick={() => handleFavorite(cripto.id)} sx={{ "&:hover": { bgcolor: "transparent" }, minWidth: "24px", height: "24px", p: 0 }}>
-              {favorites[cripto.id] ? <StarOutlinedIcon sx={{ color: "yellow" }} /> : <StarBorderIcon />}
+            <Button
+              onClick={() => handleFavorite(cripto.id)}
+              sx={{
+                "&:hover": { bgcolor: "transparent" },
+                minWidth: "24px",
+                height: "24px",
+                p: 0,
+              }}
+            >
+              {favorites[cripto.id] ? (
+                <StarOutlinedIcon sx={{ color: "yellow" }} />
+              ) : (
+                <StarBorderIcon />
+              )}
             </Button>
           </Box>
           <Typography variant="h2" sx={{ fontSize: 22, fontWeight: "bold" }}>

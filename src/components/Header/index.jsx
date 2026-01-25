@@ -11,7 +11,6 @@ export const Header = ({ isDarkMode, toggleTheme }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        borderBottom: 1
       }}
     >
       <Box
