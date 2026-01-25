@@ -1,6 +1,6 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { useState, useEffect } from "react";
-import { Inicial } from "./Inicial";
+import { Inicial } from "./pages/Inicial";
 
 function App() {
   const [mode, setMode] = useState(() => {

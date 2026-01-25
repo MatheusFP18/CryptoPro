@@ -10,7 +10,7 @@ export const getCoins = async (currency = 'brl', page = 1) => {
         params: {
             vs_currency: currency,
             page: page,
-            per_page: 10,
+            per_page: 20,
             order: 'market_cap_desc',
             sparkline: false
         }
