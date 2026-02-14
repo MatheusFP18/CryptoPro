@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export const SectionMain = ({ isDarkMode }) => {
   const [criptos, setCriptos] = useState([]);
   const [filteredCriptos, setFilteredCriptos] = useState([]);
+  const [favorites, setFavorites] = useState({});
 
   useEffect(() => {
     const getData = async () => {
@@ -36,11 +37,30 @@ export const SectionMain = ({ isDarkMode }) => {
     }
   };
 
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <Box component="section" sx={{ mt: 4 }}>
+      <Box sx={{ mb: 2}}>
+        <Typography variant="h2" sx={{ fontSize: 22, fontWeight: "bold", mb: 2 }}>
+          Meus Favoritos
+        </Typography>
+        <Card
+          isDarkMode={isDarkMode}
+          criptos={criptos.filter((cripto) => favorites[cripto.id])}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
+      </Box>
+      <Divider />
       <Box
         component="div"
-        sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}
+        sx={{ display: "flex", justifyContent: "space-between", my: 4 }}
       >
         <TextField
           onChange={searchCrypto}
@@ -57,7 +77,12 @@ export const SectionMain = ({ isDarkMode }) => {
         <Typography variant="h2" sx={{ fontSize: 22, fontWeight: "bold" }}>
           Mercado em Tempo Real
         </Typography>
-        <Card isDarkMode={isDarkMode} criptos={filteredCriptos} />
+        <Card
+          isDarkMode={isDarkMode}
+          criptos={filteredCriptos}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
       </Box>
     </Box>
   );

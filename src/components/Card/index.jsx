@@ -1,18 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 
-export const Card = ({ isDarkMode, criptos = [] }) => {
-  const [favorites, setFavorites] = useState({});
-
-  const handleFavorite = (id) => {
-    setFavorites((prevFavorites) => ({
-      ...prevFavorites,
-      [id]: !prevFavorites[id],
-    }));
-  };
-
+export const Card = ({
+  isDarkMode,
+  criptos = [],
+  favorites,
+  toggleFavorite,
+}) => {
   return (
     <Box
       component="section"
@@ -57,7 +52,7 @@ export const Card = ({ isDarkMode, criptos = [] }) => {
               </Box>
             </Box>
             <Button
-              onClick={() => handleFavorite(cripto.id)}
+              onClick={() => toggleFavorite(cripto.id)}
               sx={{
                 "&:hover": { bgcolor: "transparent" },
                 minWidth: "24px",
