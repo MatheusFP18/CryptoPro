@@ -15,6 +15,7 @@ import Logo from "../../../assets/images/favicon.png";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
+import { useThemeContext } from "../../../contexts/ThemeContext";
 
 const drawerWidth = 240;
 
@@ -22,6 +23,7 @@ export const Sidebar = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const { isDarkMode } = useThemeContext();
 
   const toggleSidebar = () => {
     setOpen(!open);
@@ -45,7 +47,7 @@ export const Sidebar = () => {
     minWidth: 0,
     mr: open ? 3 : 0,
     justifyContent: "center",
-    color: isActive ? "#3713EC" : "#FFFFFF",
+    color: isActive ? "#3713EC" : isDarkMode ? "#FFFFFF" : "#000000",
     ...transitionStyle,
     "&:hover": {
       color: "#3713EC",
@@ -160,7 +162,7 @@ export const Sidebar = () => {
                   sx={{
                     opacity: open ? 1 : 0,
                     ...transitionStyle,
-                    color: "#fff",
+                    color: isDarkMode ? "#FFFFFF" : "#000000",
                   }}
                 />
               </ListItemButton>
