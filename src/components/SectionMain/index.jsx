@@ -3,7 +3,7 @@ import { Card } from "../Card";
 import { getCoins } from "../../services/api";
 import { useEffect, useState } from "react";
 
-export const SectionMain = ({ isDarkMode }) => {
+export const SectionMain = () => {
   const [criptos, setCriptos] = useState([]);
   const [filteredCriptos, setFilteredCriptos] = useState([]);
   const [favorites, setFavorites] = useState({});
@@ -51,7 +51,6 @@ export const SectionMain = ({ isDarkMode }) => {
           Meus Favoritos
         </Typography>
         <Card
-          isDarkMode={isDarkMode}
           criptos={criptos.filter((cripto) => favorites[cripto.id])}
           favorites={favorites}
           toggleFavorite={toggleFavorite}
@@ -78,7 +77,6 @@ export const SectionMain = ({ isDarkMode }) => {
           Mercado em Tempo Real
         </Typography>
         <Card
-          isDarkMode={isDarkMode}
           criptos={filteredCriptos}
           favorites={favorites}
           toggleFavorite={toggleFavorite}

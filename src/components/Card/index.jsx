@@ -1,13 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 export const Card = ({
-  isDarkMode,
   criptos = [],
   favorites,
   toggleFavorite,
 }) => {
+  const { isDarkMode } = useThemeContext();
   return (
     <Box
       component="section"
