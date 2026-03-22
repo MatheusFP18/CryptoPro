@@ -1,16 +1,9 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { useState, useEffect } from "react";
 import { Inicial } from "./pages/Inicial";
+import { CustomThemeProvider, useThemeContext } from "./contexts/ThemeContext";
 
-function App() {
-  const [mode, setMode] = useState(() => {
-    const savedMode = localStorage.getItem("themeMode");
-    return savedMode ? savedMode : "dark";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("themeMode", mode);
-  }, [mode]);
+function AppContent() {
+  const { mode } = useThemeContext();
 
   const theme = createTheme({
     palette: {
@@ -25,7 +18,6 @@ function App() {
               primary: "#F8FAFC",
               secondary: "#94A3B8",
             },
-            
           }
         : {
             background: {
@@ -40,16 +32,19 @@ function App() {
     },
   });
 
-  const toggleTheme = () => {
-    setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
-  };
-
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
-        <Inicial isDarkMode={mode === "dark"} toggleTheme={toggleTheme} />
-      </CssBaseline>
+      <CssBaseline />
+      <Inicial />
     </ThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <CustomThemeProvider>
+      <AppContent />
+    </CustomThemeProvider>
   );
 }
 

@@ -1,8 +1,10 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { TrendingUp, Sun, Moon } from "lucide-react";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
-export const Header = ({ isDarkMode, toggleTheme }) => {
+export const Header = () => {
   const theme = useTheme();
+  const { isDarkMode, toggleTheme } = useThemeContext();
 
   return (
     <Box

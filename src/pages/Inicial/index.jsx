@@ -1,13 +1,17 @@
-import { Container, Divider } from "@mui/material";
+import { Box, Container, Divider } from "@mui/material";
 import { Header } from "../../components/Header";
 import { SectionMain } from "../../components/SectionMain";
+import { Sidebar } from "../../components/common/Sidebar";
 
-export const Inicial = ({ isDarkMode, toggleTheme }) => {
+export const Inicial = () => {
   return (
-    <Container>
-      <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+    <Container sx={{ display: "flex"}}>
+      <Sidebar />
+      <Box>
+      <Header />
       <Divider />
-      <SectionMain isDarkMode={isDarkMode} />
+      <SectionMain />
+      </Box>
     </Container>
   );
 };
