@@ -1,6 +1,8 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Inicial } from "./pages/Inicial";
 import { CustomThemeProvider, useThemeContext } from "./contexts/ThemeContext";
+import { Layout } from "./components/common/Layout";
 
 function AppContent() {
   const { mode } = useThemeContext();
@@ -35,7 +37,13 @@ function AppContent() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Inicial />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Inicial />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
